@@ -15,7 +15,6 @@ export default function Login() {
   const handlerLogin = async (e) => {
     e.preventDefault();
     try {
-      await handlerAcessUser(user);
       const userAuth = await handlerAcessUser(user)
       if (userAuth.token === undefined) {
         toast.error("E-mail ou senha invalidos")

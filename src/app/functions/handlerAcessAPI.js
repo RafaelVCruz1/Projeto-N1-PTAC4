@@ -1,7 +1,5 @@
 "use server";
 
-
-
 const usuarios = [
   {
     name: 'Rafael',
@@ -31,8 +29,9 @@ const usuarios = [
 
 const getUserAuthenticated = (user) => {
     let userAuth = {}
+
     usuarios.map(usuario => {
-      if (usuario.email === user.email && usuario.senha === user.password) {
+      if (usuario.email === user.email && usuario.password === user.password) {
         userAuth = usuario
       } 
     })

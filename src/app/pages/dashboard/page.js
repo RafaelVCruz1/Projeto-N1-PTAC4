@@ -4,12 +4,11 @@ import { Suspense } from "react";
 
 export default async function Dashboard() {
 
-
    let lista = getUsers();
    return (
     <div>
         <Suspense fallback={<p>carregando...</p>}>
-            <ListUser users={usuario}/>
+            
             {lista.map((user) => (
                 <h1>{user.name}</h1>
             ))}
