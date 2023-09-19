@@ -18,30 +18,48 @@ export default function Login() {
       const userAuth = await handlerAcessUser(user)
       if (userAuth.token === undefined) {
         toast.error("E-mail ou senha invalidos")
-      }
-      push('/pages/dashboard');
+      }else {
+        toast.success("Usuário logado com sucesso");
+        setTimeout(() => {push("/pages/dashboard");}, 1000);
+    }
     } catch {
       toast.error("Error")
       refresh();
     }
   }
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handlerLogin}>
+    <div className="bg-custom-5 p-8 md:p-16 min-h-screen flex flex-col justify-center">
+  <div className="max-w-md mx-auto bg-custom-4 p-8 rounded-lg shadow-lg">
+    <h1 className="text-3xl text-custom-1 mb-8">Login</h1>
+    <form onSubmit={handlerLogin} className="space-y-4">
+      <div>
         <input
-          placeholder='E-mail'
+          className="w-full px-4 py-2 rounded-lg border border-custom-3 focus:border-custom-1 focus:ring-2 focus:ring-custom-1"
+          placeholder="E-mail"
           type="email"
-          onChange={(e) => { setUser({ ...user, email: e.target.value }) }}>
-        </input>
+          onChange={(e) => { setUser({ ...user, email: e.target.value }) }}
+        />
+      </div>
+      <div>
         <input
-          placeholder='Senha'
-          type='password'
-          onChange={(e) => { setUser({ ...user, password: e.target.value }) }}>
-        </input>
-        <button>Entrar</button>
-      </form>
-      <ToastContainer/>
-    </div>
+          className="w-full px-4 py-2 rounded-lg border border-custom-3 focus:border-custom-1 focus:ring-2 focus:ring-custom-1"
+          placeholder="Senha"
+          type="password"
+          onChange={(e) => { setUser({ ...user, password: e.target.value }) }}
+        />
+      </div>
+      <div className="text-center">
+        <button
+          className="bg-custom-2 text-custom-3 hover:bg-custom-3 hover:text-custom-1 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-1"
+          type="submit"
+        >
+          Entrar
+        </button>
+      </div>
+    </form>
+    <ToastContainer />
+  </div>
+</div>
+
   )
 }

@@ -37,33 +37,55 @@ export default function Register() {
   };
 
    return (
-    <div>
-    <h1>Cadastro</h1>
-    <form onSubmit={userRegister}>
-    <input
-        placeholder='Nome'
-        type="text"
-        onChange={(e) => { setUser({ ...user, name: e.target.value }) }}>
-      </input>
-      <input
-        placeholder='E-mail'
-        type="email"
-        onChange={(e) => { setUser({ ...user, email: e.target.value }) }}>
-      </input>
-      <input
-        placeholder='Senha'
-        type='password'
-        onChange={(e) => { setUser({ ...user, password: e.target.value }) }}>
-      </input>
-      <input
-        placeholder='Confirme a senha'
-        type='password'
-        onChange={(e) => { setUser({ ...user, confirmpassword: e.target.value }) }}>
-      </input>
-      <button>Cadastrar</button>
+    <div className="bg-custom-5 p-8 md:p-16 min-h-screen flex flex-col justify-center">
+  <div className="max-w-md mx-auto bg-custom-4 p-8 rounded-lg shadow-lg">
+    <h1 className="text-3xl text-custom-1 mb-8">Cadastro</h1>
+    <form onSubmit={userRegister} className="space-y-4">
+      <div>
+        <input
+          className="w-full px-4 py-2 rounded-lg border border-custom-3 focus:border-custom-1 focus:ring-2 focus:ring-custom-1"
+          placeholder="Nome"
+          type="text"
+          onChange={(e) => { setUser({ ...user, name: e.target.value }) }}
+        />
+      </div>
+      <div>
+        <input
+          className="w-full px-4 py-2 rounded-lg border border-custom-3 focus:border-custom-1 focus:ring-2 focus:ring-custom-1"
+          placeholder="E-mail"
+          type="email"
+          onChange={(e) => { setUser({ ...user, email: e.target.value }) }}
+        />
+      </div>
+      <div>
+        <input
+          className="w-full px-4 py-2 rounded-lg border border-custom-3 focus:border-custom-1 focus:ring-2 focus:ring-custom-1"
+          placeholder="Senha"
+          type="password"
+          onChange={(e) => { setUser({ ...user, password: e.target.value }) }}
+        />
+      </div>
+      <div>
+        <input
+          className="w-full px-4 py-2 rounded-lg border border-custom-3 focus:border-custom-1 focus:ring-2 focus:ring-custom-1"
+          placeholder="Confirme a senha"
+          type="password"
+          onChange={(e) => { setUser({ ...user, confirmpassword: e.target.value }) }}
+        />
+      </div>
+      <div className="text-center">
+        <button
+          className="bg-custom-2 text-custom-3 hover:bg-custom-3 hover:text-custom-1 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-1"
+          type="submit"
+        >
+          Cadastrar
+        </button>
+      </div>
     </form>
-    <ToastContainer/>
+    <ToastContainer />
   </div>
+</div>
+
 );
     
 
