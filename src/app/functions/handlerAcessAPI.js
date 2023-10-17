@@ -1,45 +1,26 @@
 "use server";
 
-const usuarios = [
+const url = "https://aula-17-10-bice.vercel.app"
+
+
+
+const getUserAuthenticated = async (user) => {
+const rest = await fetch(url + "/user/authenticated",
+
   {
-    name: 'Rafael',
-    email: 'rafa@marc.com',
-    password: '123',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
-  },
-  {
-    name: 'Renato',
-    email: 'renas@marc.com',
-    password: '123',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
-  },
-  {
-    name: 'Arthur',
-    email: 'arthur@marc.com',
-    password: '123',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
-  },
-  {
-    name: 'Marcelino',
-    email: 'marcelino@marc.com',
-    password: '123',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+      method: "POST",
+      headers: {"Content-Type": "Application/json"},
+      body: JSON.stringify(user)
   }
-];
 
-const getUserAuthenticated = (user) => {
-    let userAuth = {}
+)
+  const userAuth = await rest.json()
+  return userAuth
+}
 
-    usuarios.map(usuario => {
-      if (usuario.email === user.email && usuario.password === user.password) {
-        userAuth = usuario
-      } 
-    })
-    return userAuth
-};
 
 const getUsers = () => {
-    return usuarios
+
 };
 
 export { getUsers, getUserAuthenticated };
