@@ -11,7 +11,6 @@ export default function Alter() {
     name: '',
     email: '',
     password: '',
-    confirmpassword: ''
 
    });
 
@@ -21,10 +20,10 @@ export default function Alter() {
     e.preventDefault();
     try {
 
-        if (user.password !== user.confirmpassword) {
-            toast.error("As senhas não são iguais");
-            return;
-        } 
+      if (user.name == "" || user.email == "" || user.password == "") {
+        toast.error("Preencha todos os campos");
+        return;
+    } 
         else {
             toast.success("Usuário alterado com sucesso");
             setTimeout(() => {push("/pages/dashboard");}, 1000);

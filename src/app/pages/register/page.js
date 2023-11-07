@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { postUser } from "@/app/functions/handlerAcessAPI";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,8 +12,7 @@ export default function Register() {
     name: '',
     email: '',
     password: '',
-    confirmpassword: ''
-
+  
    });
 
    const { push, refresh } = useRouter();
@@ -21,19 +21,19 @@ export default function Register() {
     e.preventDefault();
     try {
 
-        if (user.password !== user.confirmpassword) {
-            toast.error("As senhas não são iguais");
+        if (user.name == "" || user.email == "" || user.password == "") {
+            toast.error("Preencha todos os campos");
             return;
         } 
         else {
-            toast.success("Cadastro realizado com sucesso");
-            setTimeout(() => {push("/pages/dashboard");}, 1000);
+            await postUser(user)
+            return push('/pages/dashboard')
         }
     } 
-    catch {
-      toast.error("Error!");
-      refresh();
-    }
+        catch {
+          toast.error("Error!");
+          refresh();
+        }
   };
 
    return (
@@ -63,14 +63,6 @@ export default function Register() {
           placeholder="Senha"
           type="password"
           onChange={(e) => { setUser({ ...user, password: e.target.value }) }}
-        />
-      </div>
-      <div>
-        <input
-          className="w-full px-4 py-2 rounded-lg border border-custom-3 focus:border-custom-1 focus:ring-2 focus:ring-custom-1"
-          placeholder="Confirme a senha"
-          type="password"
-          onChange={(e) => { setUser({ ...user, confirmpassword: e.target.value }) }}
         />
       </div>
       <div className="text-center">
